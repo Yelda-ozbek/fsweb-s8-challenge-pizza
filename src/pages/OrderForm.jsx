@@ -42,7 +42,7 @@ const OrderForm = () => {
         <h2>{formData.isim}</h2>
         <div className="details">
           <h3>{formData.fiyat}₺</h3>
-          <span>{formData.puan} ⭐</span>
+          <span>{formData.puan} </span>
           <span>({formData.yorumSayisi})</span>
         </div>
         <p className="description">{formData.aciklama}</p>
