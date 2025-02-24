@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./OrderForm.css";
+import { useNavigate } from "react-router-dom";
 
 const OrderForm = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     isim: "Position Absolute Acı Pizza",
     fiyat: 85.5,
@@ -28,6 +30,11 @@ const OrderForm = () => {
   };
 
   const toplamFiyat = (formData.fiyat + malzemeler.length * malzemeFiyat) * adet;
+
+  const handleSubmit = (e)=> {
+    e.preventDefault();
+    navigate("/success")
+  }
   return (
     <div className="order-form">
       <header>
@@ -47,7 +54,7 @@ const OrderForm = () => {
         </div>
         <p className="description">{formData.aciklama}</p>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="first-section">
             <div className="size">
               <h4>Boyut Seç *</h4>
