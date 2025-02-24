@@ -9,6 +9,7 @@ function App() {
       <Route path="/" element={<HomePage/>} />
       <Route path="/order" element={<OrderForm />} />
       <Route path="/success" element={<SuccessPage/>} />
+    
     </Routes>
   );
 }export default App;

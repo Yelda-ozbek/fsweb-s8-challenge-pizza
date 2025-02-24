@@ -1,9 +1,8 @@
 import { useState } from "react";
 import "./OrderForm.css";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const OrderForm = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     isim: "Position Absolute Acı Pizza",
     fiyat: 85.5,
@@ -12,7 +11,8 @@ const OrderForm = () => {
     aciklama:
       "Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre.",
   });
-
+  
+  const [kullaniciIsim, setKullaniciIsim] = useState("");
   const [boyut, setBoyut] = useState("");
   const [hamur, setHamur] = useState("");
   const [malzemeler, setMalzemeler] = useState([]);
@@ -23,18 +23,25 @@ const OrderForm = () => {
   const handleMalzemeChange = (event) => {
     const { value, checked } = event.target;
     if (checked) {
-      setMalzemeler([...malzemeler, value]);
+      if (malzemeler.length < 10) {
+        setMalzemeler([...malzemeler, value]);
+      } else {
+        alert("En fazla 10 malzeme seçebilirsiniz.");
+      }
     } else {
       setMalzemeler(malzemeler.filter((malzeme) => malzeme !== value));
     }
   };
 
   const toplamFiyat = (formData.fiyat + malzemeler.length * malzemeFiyat) * adet;
-
-  const handleSubmit = (e)=> {
-    e.preventDefault();
-    navigate("/success")
-  }
+   const formGecerli =
+    kullaniciIsim.trim().length >= 3 &&
+    boyut !== "" &&
+    hamur !== "" &&
+    malzemeler.length >= 4 &&
+    malzemeler.length <= 10;
+  
+  
   return (
     <div className="order-form">
       <header>
@@ -54,7 +61,7 @@ const OrderForm = () => {
         </div>
         <p className="description">{formData.aciklama}</p>
 
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="first-section">
             <div className="size">
               <h4>Boyut Seç *</h4>
@@ -84,6 +91,16 @@ const OrderForm = () => {
                 <input type="checkbox" value={malzeme} onChange={handleMalzemeChange} /> {malzeme}
               </label>
             ))}
+            {malzemeler.length < 4 && <p style={{ color: "red" }}>En az 4 adet malzeme seçmelisiniz.</p>}
+          </div>
+          <div className="isim-input">
+            <h4>İsim *</h4>
+            <input
+              type="text"
+              placeholder="Adınızı giriniz (En az 3 karakter)"
+              value={kullaniciIsim}
+              onChange={(e) => setKullaniciIsim(e.target.value)}
+            />
           </div>
 
           <div className="siparis-notu">
@@ -101,9 +118,10 @@ const OrderForm = () => {
             <h4>Sipariş Toplamı</h4>
             <p>Seçimler: {malzemeler.length * malzemeFiyat}₺</p>
             <h3>Toplam: {toplamFiyat.toFixed(2)}₺</h3>
+
           </div>
 
-          <button type="submit" className="siparis-ver">SİPARİŞ VER</button>
+          <button type="submit" className="siparis-ver"  disabled={!formGecerli}>SİPARİŞ VER</button>
         </form>
       </section>
     </div>
