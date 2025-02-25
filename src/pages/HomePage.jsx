@@ -11,7 +11,7 @@ const HomePage = ({ navigateToOrder }) => {
    
       </header>
       <main>
-        <h2>
+        <h2 >
           <span className="homepage">KOD ACIKTIRIR<br />
                                     PİZZA DOYURUR </span>
         </h2>

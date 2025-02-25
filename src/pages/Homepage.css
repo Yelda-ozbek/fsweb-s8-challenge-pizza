@@ -63,11 +63,20 @@ main {
     color: #FAF7F2;
     width: 100%;
 }
-
+ 
+  .homepage {
+    font-size: 48px; 
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #FAF7F2;
+    margin: 0;
+    z-index: 3;
+  }
+  
+   
 
 main h2 {
     font-size: 48px;
-   
     font-weight: bold;
     letter-spacing: 2px;
     color: #FAF7F2;

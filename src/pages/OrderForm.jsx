@@ -1,8 +1,11 @@
 import { useState } from "react";
 import "./OrderForm.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 const OrderForm = () => {
+  const navigate = useNavigate(); 
   const [formData, setFormData] = useState({
     isim: "Position Absolute Acı Pizza",
     fiyat: 85.5,
@@ -17,6 +20,9 @@ const OrderForm = () => {
   const [hamur, setHamur] = useState("");
   const [malzemeler, setMalzemeler] = useState([]);
   const [adet, setAdet] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
 
   const malzemeFiyat = 5; // Her malzeme için 5₺ ekleniyor.
 
@@ -40,7 +46,37 @@ const OrderForm = () => {
     hamur !== "" &&
     malzemeler.length >= 4 &&
     malzemeler.length <= 10;
-  
+
+
+   
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      if (!formGecerli) return;
+    
+      setIsSubmitting(true);
+    
+      axios
+        .post("https://reqres.in/api/pizza", {
+          isim: kullaniciIsim,
+          boyut,
+          hamur,
+          malzemeler,
+          adet,
+          toplamFiyat,
+        })
+        .then((response) => {
+          console.log("Sipariş Özeti:", response.data);
+          navigate("/success")
+        })
+        .catch((error) => {
+          console.error(" Hata oluştu:", error);
+        })
+        .finally(() => {
+          setIsSubmitting(false); 
+        });
+    };
+    
   
   return (
     <div className="order-form">
@@ -61,7 +97,7 @@ const OrderForm = () => {
         </div>
         <p className="description">{formData.aciklama}</p>
 
-        <form>
+        <form  onSubmit={handleSubmit}>
           <div className="first-section">
             <div className="size">
               <h4>Boyut Seç *</h4>
@@ -102,6 +138,18 @@ const OrderForm = () => {
               onChange={(e) => setKullaniciIsim(e.target.value)}
             />
           </div>
+          <div className="secimler-liste">
+            <h4>Seçimler:</h4>
+            {malzemeler.length === 0 ? (
+              <p>Henüz malzeme seçilmedi.</p>
+            ) : (
+              <ul>
+                {malzemeler.map((item, index) => (
+                  <li key={index}> {item}</li>
+                ))}
+              </ul>
+            )}
+          </div>
 
           <div className="siparis-notu">
             <h4>Sipariş Notu</h4>
@@ -120,8 +168,9 @@ const OrderForm = () => {
             <h3>Toplam: {toplamFiyat.toFixed(2)}₺</h3>
 
           </div>
-
-          <button type="submit" className="siparis-ver"  disabled={!formGecerli}>SİPARİŞ VER</button>
+          <button type="submit" className="siparis-ver" disabled={!formGecerli || isSubmitting}>
+            {isSubmitting ? "Gönderiliyor..." : "SİPARİŞ VER"}
+         </button>
         </form>
       </section>
     </div>
