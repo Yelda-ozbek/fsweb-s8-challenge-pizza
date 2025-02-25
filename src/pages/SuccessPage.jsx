@@ -9,8 +9,8 @@ const SuccessPage = () => {
         <img className="logo" src={Logo} alt="Logo" />
       </header>
       <main>
-        <h2>TEBRİKLER!</h2><br/>
-         <h2>SİPARİŞİNİZ ALINDI.</h2>
+        <h2>TEBRİKLER!<br/>
+       SİPARİŞİNİZ ALINDI.</h2>
       
       </main>
     </div>

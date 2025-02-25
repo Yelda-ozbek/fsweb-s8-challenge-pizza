@@ -122,7 +122,7 @@ const OrderForm = () => {
           <div className="malzemeler">
             <h4>Ek Malzemeler</h4>
             <p>En fazla 10 malzeme seçebilirsiniz. 5₺</p>
-            {["Pepperoni", "Sosis", "Kanada Jambonu", "Tavuk", "Soğan", "Domates", "Mısır", "Jalapeno", "Ananas", "Sucuk"].map((malzeme) => (
+            {["Pepperoni", "Sosis", "Kanada Jambonu", "Tavuk", "Soğan", "Domates", "Mısır", "Jalapeno","Brokoli", "Ananas", "Sucuk"].map((malzeme) => (
               <label key={malzeme}>
                 <input type="checkbox" value={malzeme} onChange={handleMalzemeChange} /> {malzeme}
               </label>

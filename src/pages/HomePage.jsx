@@ -1,7 +1,6 @@
 import React from "react";
 import "./HomePage.css";
 import Logo from "./logo.svg"
-import PizzaImage from "./home-banner.png";
 
 const HomePage = ({ navigateToOrder }) => {
   return (
@@ -11,15 +10,21 @@ const HomePage = ({ navigateToOrder }) => {
    
       </header>
       <main>
+      <div className="slogan">
         <h2 >
-          <span className="homepage">KOD ACIKTIRIR<br />
-                                    PİZZA DOYURUR </span>
+          <span>KOD ACIKTIRIR<br />
+PİZZA DOYURUR </span>
         </h2>
         <button className="bn" onClick={navigateToOrder}>ACIKTIM </button>
-        <img src={PizzaImage} alt="Pizza" className="pizza-image" />
+        </div>
+       
+
+
+
       </main>
     </div>
   );
 };
 
 export default HomePage;
+

@@ -3,87 +3,31 @@
 
 
 
-body {
-  font-family: 'Roboto Condensed', sans-serif;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-}
+
 
 .home-container {
     background-color: #CE2829;
     height: 100vh;
-    width: 100vw;
-    position: relative;
+    width: 100vw;;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+    background-image: url("./home-banner.png");
+    background-size: cover;
+    background-position: center;
 
-.header {
-    position: relative; 
-    width: 100%;
-    display: flex;
-    justify-content: center;
 }
-
-.logo {
-    width: 200px;
-    position: relative;
-    z-index: 5; 
-    margin-top: 50px;
+.slogan {
+  text-align: center;
 }
 
 
-.pizza-image {
-    position: absolute;
-    top: -350px;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: 1;
-}
 
 
-main {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #FAF7F2;
-    width: 100%;
-}
- 
-  .homepage {
-    font-size: 48px; 
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #FAF7F2;
-    margin: 0;
-    z-index: 3;
-  }
+
+
   
-   
-
-main h2 {
-    font-size: 48px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #FAF7F2;
-    margin: 0;
-    z-index: 3;
-   
-}
 
 
 .bn {
@@ -103,14 +47,7 @@ main h2 {
 
 
 @media (max-width: 768px) {
-    main h2 {
-      font-size: 32px;
-    }
-  
-    .logo {
-      width: 180px;
-    }
-  
+   
     .bn {
       padding: 12px 30px;
       font-size: 16px;
