@@ -12,7 +12,7 @@ const OrderForm = () => {
     puan: 4.9,
     yorumSayisi: 200,
     aciklama:
-      "Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre.",
+      "Frontend Dev olarak hala position:absolute kullanıyorsan bu çok acı pizza tam sana göre.Pizza,domates peynir ve genellikle çeşitli diğer malzemelerle kaplanmış,daha sonra geleneksel larak odun ateşinde ir fırında yüksek sıcaklıkta pişirilen,genellikle yuvarlak,düzleştirilmiş mayalı buğday bazlı hamurdan luşan İtalyan kökenli lezzetli bir yemektir..Küçük bir pizzaya bazen pizzetta denir.",
   });
   
   const [kullaniciIsim, setKullaniciIsim] = useState("");
